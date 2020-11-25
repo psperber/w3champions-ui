@@ -36,7 +36,13 @@
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
 
-      <v-btn text tile @click="loginOrGoToProfile" v-if="!authCode" class="right-menu">
+      <v-btn
+        text
+        tile
+        @click="loginOrGoToProfile"
+        v-if="!authCode"
+        class="right-menu"
+      >
         <v-icon v-if="!authCode" class="mr-2">
           mdi-account-circle-outline
         </v-icon>
@@ -97,23 +103,26 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { REDIRECT_URL, BNET_API_CLIENT_ID } from "@/main";
+import { getProfileUrl } from "./helpers/url-functions";
 
 @Component({})
 export default class App extends Vue {
   public items = [
-    { 
-      title: "Tournaments", 
-      icon: "mdi-trophy", 
-      to: "/tournaments" },
+    {
+      title: "Tournaments",
+      icon: "mdi-trophy",
+      to: "/tournaments",
+    },
     {
       title: "Rankings",
       icon: "mdi-view-list",
       to: `/Rankings`,
     },
-    { 
-      title: "Matches", 
-      icon: "mdi-controller-classic", 
-      to: "/Matches" },
+    {
+      title: "Matches",
+      icon: "mdi-controller-classic",
+      to: "/Matches",
+    },
     {
       title: "Statistics",
       icon: "mdi-chart-areaspline",
@@ -144,10 +153,6 @@ export default class App extends Vue {
     this.$store.direct.dispatch.oauth.logout();
   }
 
-  get chatApiKey(): string {
-    return this.$store.direct.state.chat.apiKey;
-  }
-
   public visible(item: any): boolean {
     if (item.title == "Admin" && !this.isAdmin) {
       return false;
@@ -155,32 +160,10 @@ export default class App extends Vue {
     return true;
   }
 
-  public async downloadChatKey() {
-    await this.$store.direct.dispatch.chat.createApiKey();
-
-    var element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(this.chatApiKey)
-    );
-    element.setAttribute("download", "w3champions.key");
-
-    element.style.display = "none";
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-  }
-
   public openPlayerProfile() {
     this.$router.push({
-      path: this.getPlayerPath(this.battleTag),
+      path: getProfileUrl(this.battleTag),
     });
-  }
-
-  private getPlayerPath(playerName: string) {
-    return "/player/" + encodeURIComponent(playerName);
   }
 
   get authCode(): string {
