@@ -34,6 +34,7 @@ export type Match = {
   map: string;
   id: number;
   durationInSeconds: number;
+  number: number;
   startTime: Moment;
   endTime: Moment;
   gameMode: EGameMode;
