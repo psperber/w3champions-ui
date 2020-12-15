@@ -21,6 +21,7 @@ import PlayerActivityTab from "@/components/overal-statistics/tabs/PlayerActivit
 import WinrateTab from "@/components/overal-statistics/tabs/WinratesTab.vue";
 import MmrDistributionTab from "@/components/overal-statistics/tabs/MmrDistributionTab.vue";
 import HeroTab from "@/components/overal-statistics/tabs/HeroTab.vue";
+import FloTab from "@/components/overal-statistics/tabs/FloTab.vue";
 
 Vue.use(VueRouter);
 
@@ -145,6 +146,10 @@ const routes = [
         path: "heroes-winrates",
         component: HeroTab,
       },
+      {
+        path: "Flo",
+        component: FloTab,
+      }
     ],
   },
   {

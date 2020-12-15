@@ -29,6 +29,11 @@
             >
               Heroes
             </v-tab>
+            <v-tab
+              class="profileTab"
+              :to="`/OverallStatistics/Flo`">
+              Flo
+            </v-tab>
           </v-tabs>
           <router-view></router-view>
         </v-card>
