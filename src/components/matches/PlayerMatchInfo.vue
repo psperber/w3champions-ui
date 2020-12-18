@@ -25,13 +25,23 @@
               <span v-else>{{ mmrChange }}</span>
             </span>
           </a>
-          <div class="flag-container">
-            <country-flag-extended
-              :countryCode="player.countryCode"
-              :location="player.location"
-              size="small"
-            />
-          </div>
+
+          <v-row style="height: 30px;">
+            <div v-if="left && usingFlo" class="flo">
+              <flo-indicator></flo-indicator>
+            </div>
+            <div class="flag-container">
+              <country-flag-extended
+                :countryCode="player.countryCode"
+                :location="player.location"
+                size="small"
+              />
+            </div>
+            <div v-if="!left && usingFlo" class="flo">
+              <flo-indicator></flo-indicator>
+            </div>
+          </v-row>
+            
         </div>
         <player-icon v-if="left" :race="race" :big="bigRaceIcon" class="ml-2" />
       </div>
@@ -56,14 +66,15 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import { PlayerInTeam } from "@/store/typings";
+import { PlayerInTeam , ServerInfo } from "@/store/typings";
 import PlayerIcon from "@/components/matches/PlayerIcon.vue";
 import { RaceStat } from "@/store/player/types";
 import CountryFlagExtended from "@/components/common/CountryFlagExtended.vue";
 import { getProfileUrl } from '@/helpers/url-functions';
+import FloIndicator from '@/components/matches/FloIndicator.vue';
 
 @Component({
-  components: { PlayerIcon, CountryFlagExtended },
+  components: { PlayerIcon, CountryFlagExtended, FloIndicator },
 })
 export default class PlayerMatchInfo extends Vue {
   @Prop() public player!: PlayerInTeam;
@@ -73,6 +84,7 @@ export default class PlayerMatchInfo extends Vue {
   @Prop() public notClickable!: boolean;
   @Prop() public unfinishedMatch!: boolean;
   @Prop() public isAnonymous!: boolean;
+  @Prop() public usingFlo!: boolean;
 
   public winrate: RaceStat = {} as RaceStat;
 
@@ -175,15 +187,22 @@ export default class PlayerMatchInfo extends Vue {
   overflow: hidden;
 }
 
+// left/right are the wrong way around
 .player-info__right {
   justify-content: flex-end;
   text-align: right;
   z-index: 2;
 
   .flag-container {
-    right: 35px;
-    top: 14px;
-    height: 0px;
+    position: absolute;
+    top: -7px;
+    right: 13px;
+  }
+
+  .flo {
+    position: absolute;
+    right: 31px;
+    top: -1px;
   }
 }
 
@@ -193,16 +212,26 @@ export default class PlayerMatchInfo extends Vue {
   z-index: 2;
 
   .flag-container {
-    left: 33px;
-    top: 14px;
-    height: 0px;
+    position: absolute;
+    top: -7px;
+    left: 12px;
+  }
+
+  .flo {
+    position: absolute;
+    left: 31px;
+    top: -1px;
   }
 }
 
 .flag-container {
-  position: absolute;
-  top: 6px;
-  z-index: 1;
+  //position: absolute;
+  //top: 6px;
+  //z-index: 5;
+}
+
+.flo {
+  //z-index: 5;
 }
 
 .name-link {

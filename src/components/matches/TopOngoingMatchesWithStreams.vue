@@ -17,11 +17,10 @@ import orderBy from "lodash/orderBy";
 import sumBy from "lodash/sumBy";
 import { Component } from "vue-property-decorator";
 import { EGameMode, Match, PlayerInTeam } from "@/store/typings";
-import TeamMatchInfo from "@/components/matches/TeamMatchInfo.vue";
 import StreamedMatchInfo from "@/components/matches/StreamedMatchInfo.vue";
 
 @Component({
-  components: { StreamedMatchInfo, TeamMatchInfo },
+  components: { StreamedMatchInfo },
 })
 export default class TopOngoingMatchesWithStreams extends Vue {
   private matches: Match[] = [];

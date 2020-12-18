@@ -19,6 +19,7 @@
                   :big-race-icon="true"
                   :left="true"
                   :team="match.teams[0]"
+                  :serverInfo="match.serverInfo"
                 />
               </v-col>
               <v-col cols="1" class="text-center">
@@ -26,23 +27,26 @@
               </v-col>
 
               <v-col v-if="!matchIsFFA" cols="4">
-                <team-match-info :big-race-icon="true" :team="match.teams[1]" />
+                <team-match-info :big-race-icon="true" :team="match.teams[1]" :serverInfo="match.serverInfo"/>
               </v-col>
               <v-col v-if="matchIsFFA" cols="4">
                 <team-match-info
                   class="ma-1"
                   :big-race-icon="true"
                   :team="match.teams[1]"
+                  :serverInfo="match.serverInfo"
                 />
                 <team-match-info
                   class="ma-1"
                   :big-race-icon="true"
                   :team="match.teams[2]"
+                  :serverInfo="match.serverInfo"
                 />
                 <team-match-info
                   class="ma-1"
                   :big-race-icon="true"
                   :team="match.teams[3]"
+                  :serverInfo="match.serverInfo"
                 />
               </v-col>
               <v-col cols="1" />

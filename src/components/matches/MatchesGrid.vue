@@ -32,6 +32,7 @@
                       :team="getPlayerTeam(item)"
                       :unfinishedMatch="unfinished"
                       :is-anonymous="true"
+                      :serverInfo="item.serverInfo"
                     ></team-match-info>
                   </v-col>
                 </v-row>
@@ -46,6 +47,7 @@
                       :team="team"
                       :unfinishedMatch="unfinished"
                       :is-anonymous="true"
+                      :serverInfo="item.serverInfo"
                     ></team-match-info>
                   </v-col>
                 </v-row>
@@ -59,6 +61,7 @@
                     "
                     :unfinishedMatch="unfinished"
                     left="true"
+                    :serverInfo="item.serverInfo"
                   ></team-match-info>
                 </v-col>
                 <v-col cols="1">
@@ -72,6 +75,7 @@
                       alwaysLeftName ? getOpponentTeam(item) : getLoser(item)
                     "
                     :unfinishedMatch="unfinished"
+                    :serverInfo="item.serverInfo"
                   ></team-match-info>
                 </v-col>
               </v-row>

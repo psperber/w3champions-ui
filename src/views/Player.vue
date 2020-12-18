@@ -78,6 +78,7 @@
                   :team="getPlayerTeam(ongoingMatch)"
                   :unfinishedMatch="true"
                   left="true"
+                  :serverInfo="ongoingMatch.serverInfo"
                 ></team-match-info>
               </div>
               <div class="live-match__vstext">VS</div>
@@ -87,6 +88,7 @@
                   :team="getOpponentTeam(ongoingMatch)"
                   :unfinishedMatch="true"
                   right="true"
+                  :serverInfo="ongoingMatch.serverInfo"
                 ></team-match-info>
               </div>
             </div>
