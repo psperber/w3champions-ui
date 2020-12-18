@@ -45,20 +45,7 @@ export default class TeamMatchInfo extends Vue {
     }
 
     // WIP
-
-    if (this.serverInfo) {
-      console.log(this.serverInfo)
-    }
-
-    // let playerPingData = this.serverInfo.playerServerInfos;
-
-    // console.log(this.serverInfo)
-
-    // for (let element in playerPingData) {
-    //   if (playerPingData[element].battleTag == player && playerPingData[element].averagePing.typeof == "number") {
-    //     return true;
-    //   }
-    // }
+    // @abeninski
 
     return false;
   }
